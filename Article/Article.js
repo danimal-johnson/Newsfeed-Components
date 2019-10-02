@@ -89,11 +89,14 @@ const data = [
   {
     title: 'Student Creates Most-Impressive Newsfeed Ever',
     date: 'Oct 2nd, 2019',
-    firstParagraph: `In an uprecedented feat of pure brilliance, a masterpiece has been produced, demonstrating proficiency of DOM components at the highest level. `,
+    firstParagraph: `In an uprecedented feat of pure brilliance, a masterpiece has been produced,
+          demonstrating proficiency of DOM components at the highest level.`,
 
-    secondParagraph: `"Holy crap, this submission is good" is all that could be heard echoing through the halls today... `,
+    secondParagraph: `"Holy crap, this submission is good" is all that could be heard echoing through
+          the halls today at Lambda School Headquarters. "Somebody give that team lead a raise!"`,
 
-    thirdParagraph: `Like a presidential phonecall with a foreign diplomat, the project could only be touted as "Perfect in every way."...`
+    thirdParagraph: `Like a presidential phonecall with a foreign diplomat, the project could only be
+          self-described as "Perfect in every way."...`
   }
 ];
 
@@ -167,7 +170,18 @@ function createArticle (date, title, p1, p2, p3) {
   article.appendChild(articleP3);
   article.appendChild(articleButton);
 
-  articleButton.style = "strong";
+  articleButton.style = "strong"; // For testing
+  articleButton.addEventListener("click", e => {
+
+    if (article.classList.contains("article-open")) {
+      article.classList.remove("article-open");
+      articleButton.textContent = "More";
+    }
+    else {
+      article.classList.add("article-open");
+      articleButton.textContent = "Less";
+    }
+  });  
 
 
   return article;
