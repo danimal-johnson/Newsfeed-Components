@@ -38,26 +38,13 @@ let menuItems = [
   
 */
 
+const createMenu = function (siteMenu) {
 
-
-// const createMenu = function (siteMenu) {
- 
-//   let listString = ""; // '<div class = "menu"><ul>';
-//   for (i of siteMenu)
-//     listString += `<li>${i}</li>`;
-//  // listString += "</ul>";
-
-//   return listString;
-// }
-
-const createMenu2 = function (siteMenu) {
-
-  const navMenu = document.createElement("div");
-  navMenu.classList.add("menu");
+  const menuObj = document.createElement("div");
+  menuObj.classList.add("menu");
 
   const menuList = document.createElement("ul");
-  menuList.classList.add("unorderedList");
-  navMenu.appendChild(menuList);
+  menuObj.appendChild(menuList);
 
   for (item of siteMenu) {
     let currentLi = document.createElement("li");
@@ -65,36 +52,15 @@ const createMenu2 = function (siteMenu) {
     menuList.appendChild(currentLi);
   }
 
-  return navMenu;
+  return menuObj;
 }
 
 let menuButton = document.querySelector(".menu-button");
 let attachmentPoint = document.querySelector(".header");
 
-const mainNavMenu = createMenu2(menuItems);
-attachmentPoint.appendChild(mainNavMenu);
-
-// const navMenu = document.createElement("div");
-// navMenu.classList.add("menu");
-// attachmentPoint.appendChild(navMenu);
-
-// const menuList = document.createElement("ul");
-// menuList.classList.add("unorderedList");
-// // menuList.textContent = createMenu(menuItems);
-// navMenu.appendChild(menuList);
-
-// const firstItem = document.createElement("li");
-// firstItem.textContent = "FizzBuzz";
-// menuList.appendChild(firstItem);
+const navMenu = createMenu(menuItems);
+attachmentPoint.appendChild(navMenu);
 
 menuButton.addEventListener("click", e => {
-
-  if (mainNavMenu.classList.contains("menu--open")) {
-    mainNavMenu.classList.remove("menu--open");
-    console.log("shrinking");
-  }
-  else {
-    mainNavMenu.classList.add("menu--open");
-    console.log("growing");
-  }
+  navMenu.classList.toggle("menu--open");
 });
