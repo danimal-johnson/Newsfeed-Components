@@ -38,42 +38,63 @@ let menuItems = [
   
 */
 
-const createMenu = function (siteMenu) {
-  // let numMenuItems = siteMenu.length;
-  let listString = ""; // '<div class = "menu"><ul>';
-  
-  for (i of siteMenu)
-    listString += `<li>${i}</li>`;
-  
-  //   listString += "</ul></div>";
 
-  // console.log(listString);
-  return listString;
+
+// const createMenu = function (siteMenu) {
+ 
+//   let listString = ""; // '<div class = "menu"><ul>';
+//   for (i of siteMenu)
+//     listString += `<li>${i}</li>`;
+//  // listString += "</ul>";
+
+//   return listString;
+// }
+
+const createMenu2 = function (siteMenu) {
+
+  const navMenu = document.createElement("div");
+  navMenu.classList.add("menu");
+
+  const menuList = document.createElement("ul");
+  menuList.classList.add("unorderedList");
+  navMenu.appendChild(menuList);
+
+  for (item of siteMenu) {
+    let currentLi = document.createElement("li");
+    currentLi.textContent = item;
+    menuList.appendChild(currentLi);
+  }
+
+  return navMenu;
 }
 
-// let myNiftyString = createMenu(menuItems);
-// console.log(myNiftyString);
-
 let menuButton = document.querySelector(".menu-button");
+let attachmentPoint = document.querySelector(".header");
+
+const mainNavMenu = createMenu2(menuItems);
+attachmentPoint.appendChild(mainNavMenu);
+
+// const navMenu = document.createElement("div");
+// navMenu.classList.add("menu");
+// attachmentPoint.appendChild(navMenu);
+
+// const menuList = document.createElement("ul");
+// menuList.classList.add("unorderedList");
+// // menuList.textContent = createMenu(menuItems);
+// navMenu.appendChild(menuList);
+
+// const firstItem = document.createElement("li");
+// firstItem.textContent = "FizzBuzz";
+// menuList.appendChild(firstItem);
 
 menuButton.addEventListener("click", e => {
-  
-  if (navMenu.classList.contains("menu--open")) {
-    navMenu.classList.remove("menu--open");
+
+  if (mainNavMenu.classList.contains("menu--open")) {
+    mainNavMenu.classList.remove("menu--open");
     console.log("shrinking");
   }
   else {
-    navMenu.classList.add("menu--open");
+    mainNavMenu.classList.add("menu--open");
     console.log("growing");
   }
 });
-
-const navMenu = document.createElement("div");
-navMenu.classList.add("menu");
-navMenu.textContent = createMenu(menuItems);
-
-
-
-// let headerLocation = document.querySelector("h1"); // (".header ul");
-// console.log (headerLocation);
-// headerLocation.textContent = myNiftyString;
