@@ -132,7 +132,6 @@ You will want your component to look like the template below:
 const articles = document.querySelector(".articles");
 
 data.forEach(art => {
-  console.log(art.date);
   articles.appendChild(createArticle(art.date, art.title, art.firstParagraph,
     art.secondParagraph, art.thirdParagraph));
 } );
